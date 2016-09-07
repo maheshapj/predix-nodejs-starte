@@ -13,7 +13,6 @@ var HttpsProxyAgent = require('https-proxy-agent');
 
 var index = require('./routes/index');
 var proxy = require('./routes/proxy');
-var environmentVars = require('./config.json');
 
 /*******************************************************
 INITIALIZE VARIABLES (LOCAL OR VCAP BASED ON ENV)
@@ -74,8 +73,9 @@ function buildVcapObjectFromLocalConfig(config) {
 // checking NODE_ENV to load cloud properties from VCAPS
 // or development properties from config.json
 var node_env = process.env.node_env || 'development';
-if(node_env == 'development') {
-	var devConfig = environmentVars[node_env];
+console.log('************'+node_env+'******************');
+if(node_env === 'development') {
+	var devConfig = require('./config.json')[node_env];
 	// console.log(devConfig);
 	uaaUri = devConfig.uaaURL;
 	base64ClientCredential = devConfig.base64ClientCredential;
@@ -147,7 +147,6 @@ var connectedDeviceConfig = {
 	isConnectedAssetEnabled: isConnectedAssetEnabled
 };
 
-console.log('************'+node_env+'******************');
 console.log('windServiceUrl = ' +windServiceUrl );
 console.log('AUTHORIZATION_URL: ' + AUTHORIZATION_URL);
 console.log('TOKEN_URL: ' + TOKEN_URL);
