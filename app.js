@@ -296,7 +296,7 @@ app.get('/favicon.ico', function (req, res) {
 
 app.use('/predix-api',
 	passport.authenticate('main', {
-		noredirect: true
+		noredirect: false
 	}),
 	proxy.router);
 

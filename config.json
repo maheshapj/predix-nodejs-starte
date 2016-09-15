@@ -1,14 +1,11 @@
 {
   "development":{
-    "clientId": "{UAA Client ID created}",
-    "uaaURL": "{The UAA URI end point to get auth token }",
-    "base64ClientCredential": "{Get clientID:clientSecret then base64 encode and place it here}",
-    "appUrl": "http://localhost:3000",
-    "windServiceUrl": "{URL of the microservice <your-name>-winddata-timeseries-service}, e.g.  https://your-name-winddata-timeseries-service.run.asw-usw02-pr.predix.io",
-    "timeseriesURL": "{Time Series URL from VCAPS}",
-    "assetZoneId": "{The Zone ID for the Asset Service Created}",
-    "tagname": "{The Tagname used to create a tag in Asset Service}",
-    "timeseries_zone": "{The Zone ID for the Timeseries Service Created}",
-    "assetURL": "{Asset URL from VCAPS}"
+    "clientId": "app-client-id",
+    "uaaURL": "https://f2b04d0d-26d5-4790-9dc7-9ddc33e5af6c.predix-uaa.run.aws-usw02-pr.ice.predix.io",
+    "base64ClientCredential": "YXBwLWNsaWVudC1pZDpnbGFzc3NlY3JldA==",
+	"appUrl": "http://localhost:3000",
+    "windServiceYearlyApi" :"/services/windservices/yearly_data/sensor_id/",
+    "winddatatag":"Compressor-2015:CompressionRatio",
+    "timeseriesURL": "glasstimeseries"
   }
 }

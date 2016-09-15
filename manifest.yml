@@ -1,20 +1,23 @@
 ---
 applications:
-- name: predix-nodejs-starter
+- name: glassnodejs
   memory: 128M
   buildpack: nodejs_buildpack
   #command:  DEBUG=express:* node app.js
   command:  node app.js
-#services:
- # - <your-name>-secure-uaa-instance
- # - <your-name>-timeseries-instance
+services:
+ - glassauth
+ - glasstimeseries
  # - <your-name>-asset-instance
 env:
     node_env: cloud
     uaa_service_label : predix-uaa
+    clientId: app-client-id
     #clientId: {Enter client ID, e.g. app-client-id, and place it here}
-    #base64ClientCredential: dWFhLWNsaWVudC1pZDp1YWEtY2xpZW50LWlkLXNlY3JldA==
+    base64ClientCredential: YXBwLWNsaWVudC1pZDpnbGFzc3NlY3JldA==
     # Following properties configured only for Timeseries WindData service Integration
-    #windServiceUrl: "{URL of the microservice <your-name>-winddata-timeseries-service}, e.g.  https://your-name-winddata-timeseries-service.run.asw-usw02-pr.predix.io"
-    #assetMachine: my-type
-    #tagname: my-tag
+    windServiceUrl:  https://glass-winddata-timeseries-service
+    assetMachine: my-type
+    tagname: my-tag
+    windServiceYearlyApi : /services/windservices/yearly_data/sensor_id/
+    winddatatag : "Compressor-2015:CompressionRatio"
