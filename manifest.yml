@@ -16,8 +16,8 @@ env:
     #clientId: {Enter client ID, e.g. app-client-id, and place it here}
     base64ClientCredential: YXBwLWNsaWVudC1pZDpnbGFzc3NlY3JldA==
     # Following properties configured only for Timeseries WindData service Integration
-    windServiceUrl:  https://glass-winddata-timeseries-service
+    windServiceUrl:  https://geo-optimised-route8-timeseries-service.run.aws-usw02-pr.ice.predix.io
     assetMachine: my-type
     tagname: my-tag
-    windServiceYearlyApi : /services/windservices/yearly_data/sensor_id/
-    winddatatag : "Compressor-2015:CompressionRatio"
+    windServiceYearlyApi : /services/binanalytical/yearly_data/vizag/
+    winddatatag : "GarbageColecction-2015:Collection"

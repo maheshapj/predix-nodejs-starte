@@ -27,29 +27,27 @@ function getMachineServiceData() {
 	}
 	else {
 
-		var request = new XMLHttpRequest();
+		
 		var starttime = getStartTimeSelectedValue();
-		var datapointsUrl = "/api/services/windservices/yearly_data/sensor_id/"+tagString+"?order=asc";
+		var datapointsUrl = "https://geo-optimised-route8-timeseries-service.run.aws-usw02-pr.ice.predix.io/services/binanalytical/yearly_data/vizag/"+tagString+"?order=asc";
 		if(starttime) {
 			datapointsUrl = datapointsUrl + "&starttime="+starttime;
 		}
 		//console.log(tagString);
-		request.open('GET', datapointsUrl, true);
-		request.onload = function() {
-			if (request.status >= 200 && request.status < 400) {
-				var data = JSON.parse(request.responseText);
+		
+		$.ajax({     
+       url: datapointsUrl,
+       error: function (jqXHR, textStatus, errorThrown) {
+           document.getElementById("windService_machine_yearly").innerHTML = "Error getting data for tags";
+       },
+       success: function (obj) {
+				var data = JSON.parse(obj);
 				document.getElementById("line_chart_info").innerHTML = 'Chart for Tags';
 				lineChartMap = constructMachineChartResponse(data);
 				document.getElementById("windService_machine_yearly").innerHTML = '';
 				return lineChartMap;
-			} else {
-				document.getElementById("windService_machine_yearly").innerHTML = "Error getting data for tags";
-			}
-		};
-		request.onerror = function() {
-			document.getElementById("windService_machine_yearly").innerHTML = "Error getting data for tags";
-		};
-		request.send();
+		}
+		});
 	}
 
 	// Call the Asset service if applicable
@@ -248,7 +246,7 @@ function updateChart() {
 	else {
 		var tagString = getTagsSelectedValue();
 		var request = new XMLHttpRequest();
-		var datapointsUrl = "/api/services/windservices/yearly_data/sensor_id/"+tagString+"?order=asc&starttime=5mi-ago";
+		var datapointsUrl = "https://geo-optimised-route8-timeseries-service.run.aws-usw02-pr.ice.predix.io/services/binanalytical/yearly_data/vizag/"+tagString+"?order=asc&starttime=5mi-ago";
 		//console.log(datapointsUrl);
 		request.open('GET', datapointsUrl, true);
 		request.onload = function() {
@@ -427,7 +425,7 @@ function configureTagsTimeseriesData() {
 
 function getTagsFromMicroservice (){
 	var request = new XMLHttpRequest();
-	request.open('GET', '/api/services/windservices/tags', true);
+	request.open('GET', '/api/services/binanalytical/tags', true);
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 			var data = JSON.parse(request.responseText);
